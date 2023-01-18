@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{7B91B062-7C5F-4E70-8D99-374E62BB1403}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{7B91B062-7C5F-4E70-8D99-374E62BB1403}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicApp", "GraphicApp\GraphicApp.csproj", "{BFC8520B-6F4A-4929-94DE-DDDF777C3BEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7B91B062-7C5F-4E70-8D99-374E62BB1403}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B91B062-7C5F-4E70-8D99-374E62BB1403}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B91B062-7C5F-4E70-8D99-374E62BB1403}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFC8520B-6F4A-4929-94DE-DDDF777C3BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFC8520B-6F4A-4929-94DE-DDDF777C3BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFC8520B-6F4A-4929-94DE-DDDF777C3BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFC8520B-6F4A-4929-94DE-DDDF777C3BEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
