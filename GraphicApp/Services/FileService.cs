@@ -1,4 +1,5 @@
 ﻿using GraphicApp.MVVM.Models;
+using GraphicApp.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,45 +15,29 @@ namespace GraphicApp.Services
     {
         private string filePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\adressbok.json";
 
-        private List<ContactModel> contacts;
-
+        
         public FileService()
         {
             ReadFromFile();
         }
 
 
-        private void ReadFromFile()
+        public ObservableCollection<ContactModel> ReadFromFile()
         {
             try
             {
                 using var sr = new StreamReader(filePath);
-                contacts = JsonConvert.DeserializeObject<List<ContactModel>>(sr.ReadToEnd())!;
+                return JsonConvert.DeserializeObject<ObservableCollection<ContactModel>>(sr.ReadToEnd())!;
 
             }
-            catch { contacts = new List<ContactModel>(); }
+            catch { return null!; }
         }
 
-        private void SaveToFile()
+        public void SaveToFile()
         {
             using var sw = new StreamWriter(filePath);
-            sw.WriteLine(JsonConvert.SerializeObject(contacts));
+            sw.WriteLine(JsonConvert.SerializeObject(ContactService.Contacts()));
         }
 
-        public void AddToList(ContactModel contact)
-        {
-            contacts.Add(contact);
-            SaveToFile();
-        }
-
-        public ObservableCollection<ContactModel> Contacts()
-        {
-            var items = new ObservableCollection<ContactModel>();
-            foreach (var contact in contacts)
-            {
-                items.Add(contact);
-            }
-            return items;
-        }
     }
 }

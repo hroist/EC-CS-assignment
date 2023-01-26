@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using GraphicApp.MVVM.Models;
 using GraphicApp.Services;
 using System;
@@ -12,12 +13,10 @@ namespace GraphicApp.MVVM.ViewModels
 {
     public partial class ContactsViewModel : ObservableObject
     {
-        private readonly FileService fileService;
 
         public ContactsViewModel()
         {
-            fileService= new FileService();
-            contacts = fileService.Contacts();
+            contacts = ContactService.Contacts();
         }
 
         [ObservableProperty]
@@ -25,5 +24,10 @@ namespace GraphicApp.MVVM.ViewModels
 
         [ObservableProperty]
         private ObservableCollection<ContactModel> contacts;
+
+        [ObservableProperty]
+        private ContactModel selectedContact = null!;
+
+
     }
 }

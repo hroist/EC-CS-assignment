@@ -47,7 +47,7 @@ namespace GraphicApp.MVVM.ViewModels
         [RelayCommand]
         private void Add()
         {
-            fileService.AddToList(new Models.ContactModel { FirstName = FirstName , LastName = LastName , Email = Email , PhoneNumber = PhoneNumber, StreetName = StreetName , PostalCode = PostalCode , City = City});
+            ContactService.Add(new Models.ContactModel { FirstName = FirstName , LastName = LastName , Email = Email , PhoneNumber = PhoneNumber, StreetName = StreetName , PostalCode = PostalCode , City = City});
             FirstName = String.Empty;
             LastName = String.Empty;
             Email = String.Empty;
