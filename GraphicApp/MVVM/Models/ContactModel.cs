@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GraphicApp.Models
+namespace GraphicApp.MVVM.Models
 {
-    internal class Contact
+    public class ContactModel
     {
         public Guid Id { get; set; } = Guid.NewGuid();
 
@@ -27,7 +27,5 @@ namespace GraphicApp.Models
         public string DisplayName => $"{FirstName} {LastName}";
 
         public string Address => $"{StreetName}, {PostalCode} {City}";
-
-
     }
 }

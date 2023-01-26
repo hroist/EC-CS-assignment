@@ -3,54 +3,37 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:models="clr-namespace:GraphicApp.Models"
+        xmlns:models="clr-namespace:GraphicApp.MVVM.Models"
+        xmlns:viewmodels="clr-namespace:GraphicApp.MVVM.ViewModels"
+        xmlns:views="clr-namespace:GraphicApp.MVVM.Views"
         xmlns:local="clr-namespace:GraphicApp"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="720" Width="1080">
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
-        <!-- FORM -->
-        <StackPanel Grid.Column="0" Margin="0 0 40 0">
-            <TextBlock Text="Förnamn" />
-            <TextBox x:Name="tb_FirstName" Padding="2" Margin="0 2 0 2" />
-            
-            <TextBlock Text="Efternamn" />
-            <TextBox x:Name="tb_LastName" Padding="2" Margin="0 2 0 2" />
-            
-            <TextBlock Text="E-postadress" />
-            <TextBox x:Name="tb_Email" Padding="2" Margin="0 2 0 2" />
-            
-            <TextBlock Text="Telefonnummer" />
-            <TextBox x:Name="tb_PhoneNumber" Padding="2" Margin="0 2 0 2" />
-            
-            <TextBlock Text="Gatuadress" />
-            <TextBox x:Name="tb_StreetName" Padding="2" Margin="0 2 0 2" />
-            
-            <TextBlock Text="Postnummer" />
-            <TextBox x:Name="tb_PostalCode" Padding="2" Margin="0 2 0 2" />
-            
-            <TextBlock Text="Postort" />
-            <TextBox x:Name="tb_City" Padding="2" Margin="0 2 0 2" />
-
-            <Button x:Name="btn_Add" Click="Btn_Add_Click" Content="LÄGG TILL KONTAKT" Padding="5" />
+        
+        <!-- NAVIGATION -->
+        <StackPanel Grid.Column="0">
+            <Button Command="{Binding GoToAddContactCommand}" Style="{StaticResource navButton}" Content="&#xf234;" />
+            <Button Command="{Binding GoToContactsCommand}" Style="{StaticResource navButton}" Content="&#xf2b9;" />
         </StackPanel>
 
         <!-- CONTACT LIST -->
-        <ListView x:Name="lv_Contacts" Grid.Column="1" Margin="40 0 0 0 ">
-            <ListView.ItemTemplate>
-                <DataTemplate DataType="models:Contact">
-                    <StackPanel Margin="0 5 0 5">
-                        <TextBlock FontWeight="Bold" Text="{Binding DisplayName}" />
-                        <TextBlock Text="{Binding Email}" />
-                    </StackPanel>
+        <ContentControl Margin="20" Grid.Column="1" Content="{Binding CurrentViewModel}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type viewmodels:ContactsViewModel}">
+                    <views:ContactsView />
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                <DataTemplate DataType="{x:Type viewmodels:AddContactViewModel}">
+                    <views:AddContactView />
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
 
     </Grid>
 </Window>

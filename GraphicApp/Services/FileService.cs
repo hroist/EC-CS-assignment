@@ -1,5 +1,8 @@
-﻿using System;
+﻿using GraphicApp.MVVM.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -7,28 +10,49 @@ using System.Threading.Tasks;
 
 namespace GraphicApp.Services
 {
-    class FileService
+    public class FileService
     {
-        public string FilePath { get; set; } = null!;
+        private string filePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\adressbok.json";
 
-        public void Save(string myContacts)
+        private List<ContactModel> contacts;
+
+        public FileService()
         {
-            using var sw = new StreamWriter(FilePath);
-            sw.WriteLine(myContacts);
+            ReadFromFile();
         }
 
-        public string Read()
+
+        private void ReadFromFile()
         {
             try
             {
-                using var sr = new StreamReader(FilePath);
-                return sr.ReadToEnd();
+                using var sr = new StreamReader(filePath);
+                contacts = JsonConvert.DeserializeObject<List<ContactModel>>(sr.ReadToEnd())!;
+
             }
-            catch
+            catch { contacts = new List<ContactModel>(); }
+        }
+
+        private void SaveToFile()
+        {
+            using var sw = new StreamWriter(filePath);
+            sw.WriteLine(JsonConvert.SerializeObject(contacts));
+        }
+
+        public void AddToList(ContactModel contact)
+        {
+            contacts.Add(contact);
+            SaveToFile();
+        }
+
+        public ObservableCollection<ContactModel> Contacts()
+        {
+            var items = new ObservableCollection<ContactModel>();
+            foreach (var contact in contacts)
             {
-                return null!;
+                items.Add(contact);
             }
-            
+            return items;
         }
     }
 }
