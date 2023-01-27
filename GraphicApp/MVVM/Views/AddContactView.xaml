@@ -10,7 +10,7 @@
              d:DesignHeight="720" d:DesignWidth="1080">
     <Grid Margin="20">
 
-        <!-- FORM -->
+        <!-- ADD FORM -->
         <StackPanel Grid.Column="0" Margin="20 0 100 0">
             <TextBlock Text="{Binding PageTitle}" FontSize="24" Margin="0 0 0 20"/>
 
@@ -36,6 +36,8 @@
             <TextBox Text="{Binding City}" Padding="2" Margin="0 2 0 2" />
 
             <Button Content="LÄGG TILL KONTAKT" Command="{Binding AddCommand}" Padding="5" Margin="0 15 300 5" />
+
+            <TextBlock Text="{Binding AddedTextMessage}" />
         </StackPanel>
 
     </Grid>

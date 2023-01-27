@@ -44,10 +44,13 @@ namespace GraphicApp.MVVM.ViewModels
         [ObservableProperty]
         private string city = string.Empty;
 
+        [ObservableProperty]
+        private string addedTextMessage = string.Empty;
+
         [RelayCommand]
         private void Add()
         {
-            ContactService.Add(new Models.ContactModel { FirstName = FirstName , LastName = LastName , Email = Email , PhoneNumber = PhoneNumber, StreetName = StreetName , PostalCode = PostalCode , City = City});
+            ContactService.Add(new Models.ContactModel { FirstName = FirstName , LastName = LastName , Email = Email , PhoneNumber = PhoneNumber, StreetName = StreetName , PostalCode = PostalCode , City = City });
             FirstName = String.Empty;
             LastName = String.Empty;
             Email = String.Empty;
@@ -55,8 +58,9 @@ namespace GraphicApp.MVVM.ViewModels
             StreetName = String.Empty;
             PostalCode= String.Empty;
             City = String.Empty;
-
+            AddedTextMessage= "Kontakten har lagts till";
         }
+
 
 
     }

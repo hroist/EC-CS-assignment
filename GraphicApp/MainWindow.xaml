@@ -23,7 +23,7 @@
             <Button Command="{Binding GoToContactsCommand}" Style="{StaticResource navButton}" Content="&#xf2b9;" />
         </StackPanel>
 
-        <!-- CONTACT LIST -->
+        <!-- NAVIGATION CONTROL -->
         <ContentControl Margin="20" Grid.Column="1" Content="{Binding CurrentViewModel}">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type viewmodels:ContactsViewModel}">

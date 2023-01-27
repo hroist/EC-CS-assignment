@@ -1,4 +1,6 @@
-﻿using GraphicApp.MVVM.Models;
+﻿using DevExpress.Mvvm.Native;
+using DevExpress.Mvvm.POCO;
+using GraphicApp.MVVM.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,7 +26,14 @@ namespace GraphicApp.Services
         {
             contacts.Add(contact);
             fileService.SaveToFile();
+            
         }
+
+        public static void Update(ContactModel contact)
+        {
+            fileService.SaveToFile();            
+        }
+
 
         public static void Remove(ContactModel contact)
         {

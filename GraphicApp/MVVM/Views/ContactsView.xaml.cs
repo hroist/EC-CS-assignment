@@ -27,21 +27,5 @@ namespace GraphicApp.MVVM.Views
             InitializeComponent();
         }
 
-        private void btn_Edit_Click(object sender, RoutedEventArgs e)
-        {
-            var button = (Button)sender;
-            var contact = (ContactModel)button.DataContext;
-
-            MessageBox.Show(contact.Email);
-        }
-
-        private void btn_Remove_Click(object sender, RoutedEventArgs e)
-        {
-            var button = (Button)sender;
-            var contact = (ContactModel)button.DataContext;
-
-            ContactService.Remove(contact);
-        }
-
     }
 }
