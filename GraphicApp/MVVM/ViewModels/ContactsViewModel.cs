@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -30,7 +31,7 @@ namespace GraphicApp.MVVM.ViewModels
         private ObservableCollection<ContactModel> contacts;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(SelectedIsNotNull), nameof(Contacts))]
+        [NotifyPropertyChangedFor(nameof(SelectedIsNotNull))]
         private ContactModel selectedContact = null!;
 
         [ObservableProperty]
@@ -40,31 +41,31 @@ namespace GraphicApp.MVVM.ViewModels
         private bool showUpdateForm = false;
 
         [ObservableProperty]
-        private string firstName;
+        private string firstName = string.Empty;
 
         [ObservableProperty]
-        private string lastName;
+        private string lastName = string.Empty;
 
         [ObservableProperty]
-        private string email;
+        private string email = string.Empty;
 
         [ObservableProperty]
-        private string phoneNumber;
+        private string phoneNumber = string.Empty;
         
         [ObservableProperty]
-        private string streetName;
+        private string streetName = string.Empty;
 
         [ObservableProperty]
-        private string postalCode;
+        private string postalCode = string.Empty;
 
         [ObservableProperty]
-        private string city;
+        private string city = string.Empty;
 
         [ObservableProperty]
         private string updatedSuccess = string.Empty;
 
         [RelayCommand]
-        private void Update()
+        private void Update() 
         {
             SelectedContact.FirstName = FirstName;
             SelectedContact.LastName = LastName;
@@ -77,13 +78,13 @@ namespace GraphicApp.MVVM.ViewModels
             UpdatedSuccess = "Kontakten har uppdaterats!";
             ContactService.Update(SelectedContact);
             OnPropertyChanged(nameof(SelectedContact));
-            OnPropertyChanged(nameof(Contacts));
-
+            
             ShowUpdateForm = false;
             OnPropertyChanged(nameof(ShowUpdateForm));
 
         }
 
+        
         partial void OnSelectedContactChanged(ContactModel value)
         {
             UpdatedSuccess = string.Empty;
