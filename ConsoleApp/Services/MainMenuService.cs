@@ -1,6 +1,5 @@
 ﻿using ConsoleApp.Interfaces;
 using ConsoleApp.Models;
-using ConsoleApp.Models.AbstractModels;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,16 +7,20 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace ConsoleApp.Services;
 
-internal class MainMenuService
+public class MainMenuService
 {
-    private List<IContact> contacts = new List<IContact>();
+    public List<IContact> contacts = new List<IContact>();
     private FileService file = new FileService();
 
     public string FilePath { get; set; } = @$"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\contactList.json";
 
     public MainMenuService() 
     {
-        file.ImportFromFile(FilePath, contacts);
+        try
+        {
+            file.ImportFromFile(FilePath, contacts);
+        } catch { contacts = new List<IContact>(); }
+        
     }
 
     public void WelcomeMenu()
@@ -46,7 +49,7 @@ internal class MainMenuService
         }
     }
 
-    private void CreateContact()
+    public void CreateContact()
     {
         Console.Clear();
         Console.WriteLine("Skapa en kontakt");

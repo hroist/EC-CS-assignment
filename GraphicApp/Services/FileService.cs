@@ -13,29 +13,27 @@ namespace GraphicApp.Services
 {
     public class FileService
     {
-        private string filePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\adressbok.json";
-
-        
-        public FileService()
+                
+        public FileService(string FilePath)
         {
-            ReadFromFile();
+            ReadFromFile(FilePath);
         }
 
 
-        public ObservableCollection<ContactModel> ReadFromFile()
+        public ObservableCollection<ContactModel> ReadFromFile(string FilePath)
         {
             try
             {
-                using var sr = new StreamReader(filePath);
+                using var sr = new StreamReader(FilePath);
                 return JsonConvert.DeserializeObject<ObservableCollection<ContactModel>>(sr.ReadToEnd())!;
 
             }
             catch { return null!; }
         }
 
-        public void SaveToFile()
+        public void SaveToFile(string FilePath)
         {
-            using var sw = new StreamWriter(filePath);
+            using var sw = new StreamWriter(FilePath);
             sw.WriteLine(JsonConvert.SerializeObject(ContactService.Contacts()));
         }
 

@@ -64,9 +64,10 @@ namespace GraphicApp.MVVM.ViewModels
         [ObservableProperty]
         private string updatedSuccess = string.Empty;
 
+
         [RelayCommand]
         private void Update() 
-        {
+        {     
             SelectedContact.FirstName = FirstName;
             SelectedContact.LastName = LastName;
             SelectedContact.Email = Email;
@@ -75,13 +76,19 @@ namespace GraphicApp.MVVM.ViewModels
             SelectedContact.PostalCode= PostalCode;
             SelectedContact.City = City;
 
+            var index = Contacts.IndexOf(SelectedContact);
+
+            Contacts.Insert((index), SelectedContact);
+            Contacts.RemoveAt(index + 1);
+
+            SelectedContact = Contacts[index];
+
             UpdatedSuccess = "Kontakten har uppdaterats!";
             ContactService.Update(SelectedContact);
             OnPropertyChanged(nameof(SelectedContact));
-            
-            ShowUpdateForm = false;
-            OnPropertyChanged(nameof(ShowUpdateForm));
 
+            ShowUpdateForm = false;
+            //OnPropertyChanged(nameof(ShowUpdateForm));
         }
 
         
@@ -90,18 +97,15 @@ namespace GraphicApp.MVVM.ViewModels
             UpdatedSuccess = string.Empty;
 
             SelectedIsNotNull = true;
-            OnPropertyChanged(nameof(SelectedIsNotNull));
 
             ShowUpdateForm = false;
-            OnPropertyChanged(nameof(ShowUpdateForm));
-
         }
 
         
         [RelayCommand]
         private void RemoveButton()
         {
-            if(MessageBox.Show("Är du säker på att du vill ta bort kontakten?", "RemoveQuestion" ,MessageBoxButton.YesNo,MessageBoxImage.Exclamation) == MessageBoxResult.Yes )
+            if(MessageBox.Show("Är du säker på att du vill ta bort kontakten?", "RemoveQuestion" , MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes )
             {
                 ContactService.Remove(SelectedContact);
                 SelectedIsNotNull = false;
@@ -133,9 +137,5 @@ namespace GraphicApp.MVVM.ViewModels
             ShowUpdateForm= false;
             OnPropertyChanged(nameof(ShowUpdateForm));
         }
-
-
-
-
     }
 }

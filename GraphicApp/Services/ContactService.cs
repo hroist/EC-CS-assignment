@@ -1,4 +1,5 @@
-﻿using DevExpress.Mvvm.Native;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using DevExpress.Mvvm.Native;
 using DevExpress.Mvvm.POCO;
 using GraphicApp.MVVM.Models;
 using System;
@@ -14,31 +15,38 @@ namespace GraphicApp.Services
     {
         private static readonly FileService fileService;
 
-        private static readonly ObservableCollection<ContactModel> contacts;
+        private static ObservableCollection<ContactModel> contacts;
+
+        public static string filePath { get; set; } = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\adressbok.json";
 
         static ContactService()
         {
-            fileService= new FileService();
-            contacts = fileService.ReadFromFile();
+            fileService = new FileService(filePath);
+            contacts = fileService.ReadFromFile(filePath); 
+
+            if ( contacts == null )
+            {
+                contacts = new();
+            }
         }
 
         public static void Add(ContactModel contact)
         {
             contacts.Add(contact);
-            fileService.SaveToFile();
+            fileService.SaveToFile(filePath);
             
         }
 
         public static void Update(ContactModel contact)
-        {
-            fileService.SaveToFile();            
+        {           
+            fileService.SaveToFile(filePath);
         }
 
 
         public static void Remove(ContactModel contact)
         {
             contacts.Remove(contact);
-            fileService.SaveToFile();
+            fileService.SaveToFile(filePath);
         }
 
         public static ObservableCollection<ContactModel> Contacts()

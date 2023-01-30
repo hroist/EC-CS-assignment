@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace ConsoleApp.Services;
 
-internal class FileService
+public class FileService
 {
 
     public void Save(string filePath, string contactList)

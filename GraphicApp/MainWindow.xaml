@@ -10,17 +10,17 @@
         d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="720" Width="1080">
-    <Grid Margin="20">
+        Title="MainWindow" Height="720" Width="1080" Background="#fdfdff">
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         
         <!-- NAVIGATION -->
-        <StackPanel Grid.Column="0">
-            <Button Command="{Binding GoToAddContactCommand}" Style="{StaticResource navButton}" Content="&#xf234;" />
-            <Button Command="{Binding GoToContactsCommand}" Style="{StaticResource navButton}" Content="&#xf2b9;" />
+        <StackPanel Grid.Column="0"  Background="#A5BCB8">
+            <Button Command="{Binding GoToAddContactCommand}" Style="{StaticResource navButton}" Content="&#xf234;" Margin="15 10 20 10" ToolTip="Lägg till kontakt" />
+            <Button Command="{Binding GoToContactsCommand}" Style="{StaticResource navButton}" Content="&#xf2b9;" Margin="15 0 20 10" ToolTip="Adressbok"/>
         </StackPanel>
 
         <!-- NAVIGATION CONTROL -->

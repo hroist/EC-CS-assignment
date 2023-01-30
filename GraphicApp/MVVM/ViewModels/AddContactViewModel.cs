@@ -17,7 +17,7 @@ namespace GraphicApp.MVVM.ViewModels
 
         public AddContactViewModel()
         {
-            fileService = new FileService();    
+            fileService = new FileService(ContactService.filePath);    
         }
 
         [ObservableProperty]
