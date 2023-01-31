@@ -12,7 +12,7 @@
 
         <!-- ADD FORM -->
         <StackPanel Grid.Column="0" Margin="20 0 100 0">
-            <TextBlock Text="{Binding PageTitle}" FontSize="24" Margin="0 0 0 20"/>
+            <TextBlock Text="{Binding PageTitle}" FontSize="24" Margin="0 0 0 20" FontWeight="Medium" Foreground="#393D3F"/>
 
             <TextBlock Text="Förnamn" />
             <TextBox Text="{Binding FirstName}" Padding="2" Margin="0 2 0 2" />
@@ -35,7 +35,7 @@
             <TextBlock Text="Postort" />
             <TextBox Text="{Binding City}" Padding="2" Margin="0 2 0 2" />
 
-            <Button Content="LÄGG TILL KONTAKT" Command="{Binding AddCommand}" Padding="5" Margin="0 15 300 5" />
+            <Button Content="LÄGG TILL KONTAKT" Command="{Binding AddCommand}" Style="{StaticResource stdButton}" Padding="5" Margin="0 15 300 5" />
 
             <TextBlock Text="{Binding AddedTextMessage}" />
         </StackPanel>

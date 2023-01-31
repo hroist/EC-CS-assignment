@@ -17,8 +17,15 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="{Binding PageTitle}" FontSize="24" FontWeight="Medium" Margin="0 0 0 10"/>
-        <TextBlock Grid.Row="0" Text="Kontaktinformation" FontSize="24" FontWeight="Medium" Margin="430 0 0 10"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="{Binding PageTitle}" FontSize="24" FontWeight="Medium" Margin="0 0 0 10" Foreground="#393D3F" />
+            <TextBlock Visibility="{Binding SelectedIsNotNull, Converter={dxmvvm:BooleanToVisibilityConverter}}" Grid.Column="1" Text="KONTAKTINFORMATION" FontSize="24" FontWeight="Medium" Margin="14 0 0 10" Foreground="#393D3F" />
+        </Grid>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -26,15 +33,18 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <ListView Grid.Column="0" ItemsSource="{Binding Contacts}" SelectionMode="Single" SelectedItem="{Binding SelectedContact}">
+            <ListView Grid.Column="0" ItemsSource="{Binding Contacts}" BorderThickness="0" SelectionMode="Single" SelectedItem="{Binding SelectedContact}" ItemContainerStyle="{StaticResource ListItemStyle}">
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:ContactModel}">
-                        <TextBlock Text="{Binding DisplayName}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xf007;  " FontFamily="{StaticResource FontAwesome-Solid}" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding DisplayName}" />
+                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Grid Grid.Column="1" Margin="10 0 0 0" >
+            <Grid Background="White" Visibility="{Binding SelectedIsNotNull, Converter={dxmvvm:BooleanToVisibilityConverter}}" Grid.Column="1" Margin="15 0 0 0" >
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -47,14 +57,14 @@
                         <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.Column="0" Grid.Row="0" Visibility="{Binding SelectedIsNotNull, Converter={dxmvvm:BooleanToVisibilityConverter}}">
-                        <TextBlock Text="Namn:" />
-                        <TextBlock Text="E-postadress:" />
-                        <TextBlock Text="Telefonnummer:" />
-                        <TextBlock Text="Adress:" />
+                    <StackPanel Grid.Column="0" Grid.Row="0" Margin="5" >
+                        <TextBlock FontWeight="Medium" Text="Namn:" />
+                        <TextBlock FontWeight="Medium" Text="E-postadress:" />
+                        <TextBlock FontWeight="Medium" Text="Telefonnummer:" />
+                        <TextBlock FontWeight="Medium" Text="Adress:" />
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1" Grid.Row="0">
+                    <StackPanel Grid.Column="1" Grid.Row="0" Margin="5">
                         <TextBlock Text="{Binding SelectedContact.DisplayName}" />
                         <TextBlock Text="{Binding SelectedContact.Email}" />
                         <TextBlock Text="{Binding SelectedContact.PhoneNumber}" />
@@ -62,34 +72,34 @@
                         <TextBlock Text="{Binding UpdatedSuccess}" Margin="0 15 0 0" HorizontalAlignment="Center" />
                     </StackPanel>
 
-                    <StackPanel Grid.Column="2" Grid.Row="0" Visibility="{Binding SelectedIsNotNull, Converter={dxmvvm:BooleanToVisibilityConverter}}" HorizontalAlignment="Right" >
-                        <Button Command="{Binding GoToUpdateButtonCommand}" Style="{StaticResource stdButton}" Content="Redigera" Width="55" Padding="0 2 0 2" Margin="4" />
-                        <Button Command="{Binding RemoveButtonCommand}" Style="{StaticResource stdButton}" Content="Ta bort" Width="55" Padding="0 2 0 2" Margin="4" />
+                    <StackPanel Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" Margin="5" >
+                        <Button Command="{Binding GoToUpdateButtonCommand}" Style="{StaticResource stdButton}" Content="Redigera" Width="80" Margin="5 1 5 0" />
+                        <Button Command="{Binding RemoveButtonCommand}" Style="{StaticResource stdButton}" Content="Ta bort" Width="80"  />
                     </StackPanel>
 
                     <!-- UPDATE FORM -->
-                    <StackPanel Visibility="{Binding ShowUpdateForm, Converter={dxmvvm:BooleanToVisibilityConverter}}" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="20 0 100 0">
-                        <TextBlock Text="Redigera kontakt" FontSize="24" Margin="0 0 0 20"/>
+                    <StackPanel Visibility="{Binding ShowUpdateForm, Converter={dxmvvm:BooleanToVisibilityConverter}}" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="10 0 20 0">
+                        <TextBlock Text="Redigera kontakt" FontSize="20" Foreground="#546a7b" Margin="0 0 0 10"/>
 
-                        <TextBlock Text="Förnamn" />
+                        <TextBlock Text="Förnamn" Foreground="#546a7b" FontWeight="Medium" />
                         <TextBox Text="{Binding FirstName}" Padding="2" Margin="0 2 0 2" />
 
-                        <TextBlock Text="Efternamn" />
+                        <TextBlock Text="Efternamn" Foreground="#546a7b" FontWeight="Medium" />
                         <TextBox Text="{Binding LastName}" Padding="2" Margin="0 2 0 2" />
 
-                        <TextBlock Text="E-postadress" />
+                        <TextBlock Text="E-postadress" Foreground="#546a7b" FontWeight="Medium" />
                         <TextBox Text="{Binding Email}" Padding="2" Margin="0 2 0 2" />
 
-                        <TextBlock Text="Telefonnummer" />
+                        <TextBlock Text="Telefonnummer" Foreground="#546a7b" FontWeight="Medium" />
                         <TextBox Text="{Binding PhoneNumber}" Padding="2" Margin="0 2 0 2" />
 
-                        <TextBlock Text="Gatuadress" />
+                        <TextBlock Text="Gatuadress" Foreground="#546a7b" FontWeight="Medium" />
                         <TextBox Text="{Binding StreetName}" Padding="2" Margin="0 2 0 2" />
 
-                        <TextBlock Text="Postnummer" />
+                        <TextBlock Text="Postnummer" Foreground="#546a7b" FontWeight="Medium" />
                         <TextBox Text="{Binding PostalCode}" Padding="2" Margin="0 2 0 2" />
 
-                        <TextBlock Text="Postort" />
+                        <TextBlock Text="Postort" Foreground="#546a7b" FontWeight="Medium" />
                         <TextBox Text="{Binding City}" Padding="2" Margin="0 2 0 2" />
                         <StackPanel Orientation="Horizontal" >
                             <Button Content="UPPDATERA KONTAKT" Command="{Binding UpdateCommand}" Style="{StaticResource stdButton}" Padding="10 5 10 5" Margin="0 15 10 5" />

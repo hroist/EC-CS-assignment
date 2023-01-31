@@ -10,7 +10,7 @@
         d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="720" Width="1080" Background="#fdfdff">
+        Title="MainWindow" Height="720" Width="1080" Background="#f5f5f5">
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />

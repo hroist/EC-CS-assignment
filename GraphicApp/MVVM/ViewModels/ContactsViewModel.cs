@@ -25,7 +25,7 @@ namespace GraphicApp.MVVM.ViewModels
         }
 
         [ObservableProperty]
-        private string pageTitle = "Kontakter";
+        private string pageTitle = "KONTAKTER";
 
         [ObservableProperty]
         private ObservableCollection<ContactModel> contacts;

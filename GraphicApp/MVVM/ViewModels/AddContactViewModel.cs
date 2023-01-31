@@ -21,7 +21,7 @@ namespace GraphicApp.MVVM.ViewModels
         }
 
         [ObservableProperty]
-        private string pageTitle = "Skapa en ny kontakt";
+        private string pageTitle = "LÄGG TILL EN NY KONTAKT";
 
         [ObservableProperty]
         private string firstName = string.Empty;
