@@ -91,7 +91,6 @@ namespace GraphicApp.MVVM.ViewModels
             //OnPropertyChanged(nameof(ShowUpdateForm));
         }
 
-        
         partial void OnSelectedContactChanged(ContactModel value)
         {
             UpdatedSuccess = string.Empty;
@@ -101,7 +100,7 @@ namespace GraphicApp.MVVM.ViewModels
             ShowUpdateForm = false;
         }
 
-        
+
         [RelayCommand]
         private void RemoveButton()
         {
@@ -134,7 +133,7 @@ namespace GraphicApp.MVVM.ViewModels
         [RelayCommand]
         private void Cancel()
         {
-            ShowUpdateForm= false;
+            ShowUpdateForm = false;
             OnPropertyChanged(nameof(ShowUpdateForm));
         }
     }

@@ -151,30 +151,37 @@ public class MainMenuService
                               $"E-postadress: {contactBySearch.Email}\n" +
                               $"Telefonnummer: {contactBySearch.PhoneNumber}\n" +
                               $"Adress: {contactBySearch.Address}\n");
+
+                Console.WriteLine("\n----------------------------------------");
+                Console.WriteLine("Är du säker på att du vill ta bort denna kontakt? (y/n)");
+                var userOption = Console.ReadLine();
+                if (userOption == "y")
+                {
+                    if (contactBySearch != null) { contacts.Remove(contactBySearch); }
+                    file.Save(FilePath, JsonConvert.SerializeObject(contacts));
+
+                    Console.Clear();
+                    Console.WriteLine("Ta bort en kontakt");
+                    Console.WriteLine("----------------------------------------\n");
+                    Console.WriteLine("Kontakten har tagits bort. Tryck på valfri tangent för att gå tillbaka till huvudmenyn.");
+                    Console.ReadKey();
+
+                }
+                else
+                {
+                    WelcomeMenu();
+                }
             }
             else
             {
                 Console.WriteLine("\nDet hittades ingen kontakt som matchade sökningen.");
-            }
 
-            Console.WriteLine("\n----------------------------------------");
-            Console.WriteLine("Är du säker på att du vill ta bort denna kontakt? (y/n)");
-            var userOption = Console.ReadLine();
-            if(userOption == "y")
-            {
-                if(contactBySearch != null) { contacts.Remove(contactBySearch); }
-                file.Save(FilePath, JsonConvert.SerializeObject(contacts));
-
-                Console.Clear();
-                Console.WriteLine("Ta bort en kontakt");
-                Console.WriteLine("----------------------------------------\n");
-                Console.WriteLine("Kontakten har tagits bort. Tryck på valfri tangent för att gå tillbaka till huvudmenyn.");
+                Console.WriteLine("\n----------------------------------------");
+                Console.WriteLine("Tryck på valfri tangent för att gå tillbaka till huvudmenyn.");
                 Console.ReadKey();
-
-            } else
-            {
-                WelcomeMenu();
             }
+
+
         }
     }
 } 

@@ -24,6 +24,9 @@ namespace GraphicApp.MVVM.ViewModels
         private string pageTitle = "LÄGG TILL EN NY KONTAKT";
 
         [ObservableProperty]
+        private string addedTextMessage = "";
+
+        [ObservableProperty]
         private string firstName = string.Empty;
 
         [ObservableProperty]
@@ -44,9 +47,6 @@ namespace GraphicApp.MVVM.ViewModels
         [ObservableProperty]
         private string city = string.Empty;
 
-        [ObservableProperty]
-        private string addedTextMessage = string.Empty;
-
         [RelayCommand]
         private void Add()
         {
@@ -60,8 +60,5 @@ namespace GraphicApp.MVVM.ViewModels
             City = String.Empty;
             AddedTextMessage= "Kontakten har lagts till";
         }
-
-
-
     }
 }
